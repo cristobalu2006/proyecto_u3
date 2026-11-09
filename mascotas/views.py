@@ -10,7 +10,7 @@ from mascotas.serializers import ResponsableSerializer
 from mascotas.serializers import MascotaSerializer
 
 
-@api_view(['POST'])
+@api_view(['POST', 'PUT']) #FUNCIONA
 def crear_mascota(request):
     mascota_deserializado = MascotaSerializer(data=request.data)
 
@@ -22,7 +22,7 @@ def crear_mascota(request):
     
 
 
-@api_view(['GET'])
+@api_view(['GET']) #FUNCIONA
 def listar_mascotas(request):
     try:
         listado_mascotas = Mascota.objects.all()
@@ -63,7 +63,7 @@ def eliminar_mascotas(request, id):
 
 
 
-@api_view(['POST', 'PUT'])
+@api_view(['POST', 'PUT']) #FUNCIONA
 def crear_responsable(request):
     responsable_deserializado = ResponsableSerializer(data=request.data)
 
@@ -74,11 +74,11 @@ def crear_responsable(request):
         return Response(responsable_deserializado.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
+@api_view(['GET']) #FUNCIONA
 def listar_responsables(request):
     try:
         listado_responsables = Responsable.objects.all()
-        serializado = MascotaSerializer(listado_responsables, many=True)
+        serializado = ResponsableSerializer(listado_responsables, many=True)
 
         return Response(serializado.data, status=status.HTTP_200_OK)
     except:

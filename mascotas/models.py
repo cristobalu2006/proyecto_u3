@@ -13,11 +13,11 @@ class Responsable(models.Model):
         return f"Nombre: {self.nombre} Correo: {self.correo} Rut: {self.rut}"
 
 class Mascota(models.Model):
-    responsable_id = models.ForeignKey(Responsable, on_delete=models.CASCADE, related_name="mascotas", null=False)
 
     nombre = models.CharField(null=False, max_length=200)
     anio_nacimiento = models.PositiveIntegerField(null=False)
     especie = models.CharField(null=False, max_length=200)
+    responsable = models.ForeignKey(Responsable, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Mascotas"
