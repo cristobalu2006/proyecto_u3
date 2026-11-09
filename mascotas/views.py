@@ -75,7 +75,7 @@ def crear_responsable(request):
 
 
 @api_view(['GET'])
-def listar_responsable(request):
+def listar_responsables(request):
     try:
         listado_responsables = Responsable.objects.all()
         serializado = MascotaSerializer(listado_responsables, many=True)
